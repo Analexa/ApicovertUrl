@@ -2,18 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Services\UrlTransformer;
+
 class apiUrlController extends Controller
 {
 
-    public function index()
+    public function urlTransform(Request $request): JsonResponse
     {
-       dump('muestra');
-       die();
+        $url = $request->input('url');
+        $require = $request->input('required');
 
+        $urlTransformer = new UrlTransformer();
+        $transformedUrl = $urlTransformer->transformUrl($url, $require);
 
-       // return view('admin.users.index', compact('users'));
+        $response = [
+            'url' => $transformedUrl
+        ];
+
+       return response()->json($response);
+
     }
-
-
 
 }

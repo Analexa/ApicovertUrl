@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/api/v1/short-urlsphp', apiUrlController::class);
+Route::post('/api/v1/short-urls', [apiUrlController::class, 'urlTransform']);
