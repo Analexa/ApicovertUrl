@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/api/v1/short-urls', [apiUrlController::class, 'urlTransform']);
+Route::middleware('bearer.token')->post('/api/v1/short-urls', [apiUrlController::class, 'urlTransform']);
